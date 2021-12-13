@@ -3,6 +3,9 @@ require 'faker'
 if Rails.env.development?
   puts "Cleaning database..."
   Car.destroy_all
+  User.destroy_all
+  Location.destroy_all
+  Booking.destroy_all
 end
 
 puts "Creating DB..."
@@ -14,9 +17,9 @@ Cadillac_Escalade = Car.create!({ brand: 'Cadillac', model: 'Escalade', price_pe
 Cadillac_Lowrider = Car.create!({ brand: 'Cadillac', model: 'Lowrider', price_per_day: 135, rental_status: 'available'})
 Fiat_Punto = Car.create!({ brand: 'Fiat', model: 'Punto', price_per_day: 65, rental_status: 'rented'})
 95.times do
-  car = Car.create!({ brand: Faker::Vehicle.make, model: Faker::Vehicle.model, price_per_day: rand(55..145).round, current_location: Faker::Address.city, rental_status: ['available', 'rented'].sample })
+  car = Car.create!({ brand: Faker::Vehicle.make, model: Faker::Vehicle.model, price_per_day: rand(55..145).round, rental_status: ['available', 'rented'].sample })
 end
-puts "Cars added!"
+puts "Cars created!"
 
 puts "Creating locations..."
 20.times do
@@ -32,5 +35,6 @@ puts "Users created"
 
 puts "Creating fake bookings..."
 50.times do
-  booking = Booking.create!({ departure_date: Faker::Date.in_date_period(year: 2018, month: 7), arrival_date: Faker::Date.in_date_period(month: 36), departure_time: rand(24), arrival_time: rand(24), user_id: rand(1..100), car_id: rand(1..100)})
+  booking = Booking.create!({ departure_date: Faker::Date.in_date_period(year: 2018, month: 7), arrival_date: Faker::Date.in_date_period(year: 2019, month: 7), departure_time: rand(24), arrival_time: rand(24), user_id: rand(1..100), car_id: 2})
 end
+puts "Fake bookings created!"
