@@ -39,7 +39,14 @@ puts "Creating fake bookings..."
 end
 puts "Fake bookings created!"
 
-# puts "Creating fake pick-ups..."
-# Booking.each do |booking|
+puts "Creating fake pick-ups..."
+Location.all.each do |location|
+  pick_up = PickUp.create!({location_id: location.id, booking_id: rand(1..20)})
+end
+puts "Fake pick-ups created!"
 
-# end
+puts "Creating fake drop-offs..."
+Location.all.each do |location|
+  drop_off = DropOff.create!({location_id: location.id, booking_id: rand(1..20)})
+end
+puts "Fake drop-offs created!"
