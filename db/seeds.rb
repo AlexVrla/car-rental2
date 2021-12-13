@@ -35,6 +35,11 @@ puts "Users created"
 
 puts "Creating fake bookings..."
 50.times do
-  booking = Booking.create!({ departure_date: Faker::Date.in_date_period(year: 2018, month: 7), arrival_date: Faker::Date.in_date_period(year: 2019, month: 7), departure_time: rand(24), arrival_time: rand(24), user_id: rand(1..100), car_id: 2})
+  booking = Booking.create!({ departure_date: Faker::Date.in_date_period(year: 2018, month: 7), arrival_date: Faker::Date.in_date_period(year: 2019, month: 7), departure_time: rand(24), arrival_time: rand(24), user_id: rand(1..100), car_id: rand(1..100)})
 end
 puts "Fake bookings created!"
+
+# puts "Creating fake pick-ups..."
+# Booking.each do |booking|
+
+# end
